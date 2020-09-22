@@ -2,26 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
 
-## Development server
+Application permettant de gérer ses propre recettes de cuisine. Conçue pour remplacer les carnets de notes et ne plus perdre les recttes que l'on aime.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Mot de l'auteur
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Lancée dans une reconversion dans le domaine de l'informatique, l'idée de cette application m'est venu alors que je cherchais un projet qui me permettrait de m'excercer avec Spring et Angular. Ayant l'habitude d'écrire mes recettes de cuisine sur une multitude de petit carnets et de feuilles volantes, j'ai pensé cette application comme un endroit qui me permettrait de les regrouper, de les avoir avec moi même en voyage et peut-être même les partager avec d'autres utilisateurs.
