@@ -1,10 +1,13 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import { config } from './common';
 
-export const environment = {
-  production: false
-};
+export const environment = Object.assign({
+  production: false,
+  baseUrl: 'http://localhost:8080/',
+  baseUrlFront: 'http://localhost:4200/'
+}, config);
 
 /*
  * For easier debugging in development mode, you can import the following file

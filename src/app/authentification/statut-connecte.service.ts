@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from './authentification.service';
+import { map, tap } from 'rxjs/operators';
+
+/**
+ * Service utilisé par le routeur pour savoir si l'utilisateur est connecté.
+ *
+ * En cas d'utilisateur non connecté, il est redirigé vers la page de connexion.
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class StatutConnecteService implements CanActivate {
+
+  constructor(private authSrv: AuthService, private router: Router) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.authSrv.verifierAuthentification()
+      .pipe(
+        map(col => !col.estAnonyme()),
+        tap(estConnecte => {
+          if (!estConnecte) {
+            this.router.navigate(['/connexion']);
+          }
+        })
+      );
+  }
+}

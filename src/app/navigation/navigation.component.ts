@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  public isMenuCollapsed = true;
+
+  constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Action déconnecter utilisateur.
+   */
+  seDeconnecter() {
+    this.authSrv.seDeconnecter().subscribe(
+      () => this.router.navigate(['/connexion'])
+    );
   }
 
 }

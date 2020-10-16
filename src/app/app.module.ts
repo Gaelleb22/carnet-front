@@ -9,6 +9,9 @@ import { MesRecettesComponent } from './mes-recettes/mes-recettes.component';
 import { RecettesPartageesComponent } from './recettes-partagees/recettes-partagees.component';
 import { ConseilsComponent } from './conseils/conseils.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { AuthentificationComponent } from './authentification/authentification.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,13 @@
 <h1>Carnet de cuisine</h1>
 <h2>Application en développement</h2>
+
+<!--Déconnexion-->
+<div class="text-right">
+  <ng-container *ngIf="utilisateurConnecte | async as user">
+    <div class="lead" *ngIf="!user.estAnonyme()">
+      <app-navigation></app-navigation>
+    </div>
+  </ng-container>
+</div>
+
 <router-outlet></router-outlet>
