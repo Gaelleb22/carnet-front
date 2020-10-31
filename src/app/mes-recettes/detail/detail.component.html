@@ -1,0 +1,36 @@
+<div class="recette">
+
+  <div>
+    <h1>{{recette.nom}}</h1>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <p>Temps de préparation : {{recette.tempsPreparation}}</p>
+      <p>Temps de cuisson : {{recette.tempsCuisson}}</p>
+      <p>Classement : {{recette.classement}}</p>
+    </div>
+    <div class="col">
+      <h2>Ingrédients</h2>
+    <ul>
+      <li *ngFor="let ing of recette.ingredients">{{ing.quantite}} {{ing.nom}}</li>
+    </ul>
+    </div>
+  </div>
+
+  <div>
+    <h2>Étapes de préparation</h2>
+    <ul>
+      <li *ngFor="let etape of recette.etapes">{{etape.texte}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="recette.astuces.length > 0">
+    <h2>Astuce</h2>
+    <ul>
+      <li *ngFor="let ast of recette.astuces">{{ast.astuce}}</li>
+    </ul>
+  </div>
+
+</div>

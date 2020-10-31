@@ -1,0 +1,25 @@
+h1 {
+  text-align: center;
+}
+
+p.deconnexion {
+  text-align: end;
+}
+
+button {
+  background-color: white;
+  width: auto;
+  border: 2px solid #58472e;
+  border-radius: 20px 20px 0px 0px;
+  display: inline-block;
+}
+
+div.bouton {
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 50px;
+}
+
+div.nav {
+  border-bottom: 2px solid #58472e;
+}

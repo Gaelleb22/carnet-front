@@ -1,0 +1,12 @@
+div.recette {
+  background-color: white;
+  width: auto;
+  border: 2px solid #58472e;
+  border-radius: 20px;
+  padding: 50px;
+  margin: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}

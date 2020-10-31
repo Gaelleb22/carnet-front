@@ -1,13 +1,22 @@
-<h1>Carnet de cuisine</h1>
-<h2>Application en développement</h2>
+<div class="app">
+  <!--Déconnexion-->
+  <div class="row nav">
+    <ng-container *ngIf="utilisateurConnecte | async as user">
 
-<!--Déconnexion-->
-<div class="text-right">
-  <ng-container *ngIf="utilisateurConnecte | async as user">
-    <div class="lead" *ngIf="!user.estAnonyme()">
-      <app-navigation></app-navigation>
-    </div>
-  </ng-container>
+      <div class="col text-center" *ngIf="user.estAnonyme()" id="titre">
+        <h1>Mon carnet gourmant</h1>
+        <p>Bienvenue sur l'application "Mon carnet gourmant" ! Identifiez-vous pour accèder à vos recettes !</p>
+      </div>
+
+      <div class="lead col" *ngIf="!user.estAnonyme()">
+        <app-navigation></app-navigation>
+      </div>
+    </ng-container>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
 </div>
 
-<router-outlet></router-outlet>
+<app-footer></app-footer>

@@ -1,3 +1,5 @@
+import { Recette } from '../entity/recette.domain';
+
 /**
  * Utilisateur de l'application
  */
@@ -7,6 +9,7 @@ export class Utilisateur{
   pseudo: string;
   motDePasse: string;
   role: string;
+  recettes: Recette[];
 
   constructor(params: any) {
     Object.assign(this, params);

@@ -1,0 +1,29 @@
+.footer h1 {
+  text-decoration: underline;
+}
+.footer h6 {
+  color: white;
+  font-size: large;
+}
+.footer {
+  bottom: 0;
+  background-color:#c09758;
+  height: max-content;
+  margin-top: 10px;
+}
+p{
+  color: white;
+}
+.copyright {
+  background-color:#58472e;
+}
+
+.copyright p{
+  margin-left: auto;
+  margin-right: auto;
+}
+.logo {
+  width: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

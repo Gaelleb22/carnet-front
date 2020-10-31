@@ -11,7 +11,11 @@ import { ConseilsComponent } from './conseils/conseils.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './authentification/auth-interceptor.service';
+import { DatePipe } from '@angular/common';
+import { DetailComponent } from './mes-recettes/detail/detail.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     MesRecettesComponent,
     RecettesPartageesComponent,
     ConseilsComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    DetailComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true,
+  }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

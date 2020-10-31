@@ -1,25 +1,46 @@
-<div class="row navbar navbar-expand-lg mb-3">
-  <a class="navbar-brand" routerLink="/accueil">Accueil</a>
-
-  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
-    &#9776;
-  </button>
-
-  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/mes-recettes" (click)="isMenuCollapsed = true">Mes recettes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/recettes-partagees" (click)="isMenuCollapsed = true">Recettes partagées</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/conseils" (click)="isMenuCollapsed = true">Conseils culinaires</a>
-      </li>
-    </ul>
+<div class="titre">
+    <h1>Mon carnet gourmant</h1>
     <div>
-      <p><i class="fa fa-power-off pointer" (click)="seDeconnecter()" id="deco"
-        ngbTooltip="Déconnection"></i></p>
+      <p class="deconnexion">Bienvenue ! <i class="fa fa-power-off pointer" (click)="seDeconnecter()" id="deco"
+        ngbTooltip="Déconnexion"></i></p>
     </div>
+
+</div>
+<!--
+<div class="row navbar navbar-expand-lg mb-3">
+    <a class="navbar-brand" routerLink="/accueil">Accueil</a>
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      &#9776;
+    </button>
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/mes-recettes" (click)="isMenuCollapsed = true">Mes recettes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/recettes-partagees" (click)="isMenuCollapsed = true">Recettes partagées</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/conseils" (click)="isMenuCollapsed = true">Conseils culinaires</a>
+        </li>
+      </ul>
   </div>
+-->
+
+
+
+<!---->
+
+<div class="row nav">
+  <div class="bouton">
+    <button class="nav-link" routerLink="/accueil">Accueil</button>
+    <button class="nav-link" routerLink="/mes-recettes">Mes recettes</button>
+    <button class="nav-link" routerLink="/recettes-partagees">Recettes partagées</button>
+    <button class="nav-link" routerLink="/conseils">Conseils culinaires</button>
+  </div>
+
+
+
 </div>
