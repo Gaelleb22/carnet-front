@@ -7,8 +7,9 @@
 
   <div class="row">
     <div class="col">
-      <p>Temps de préparation : {{recette.tempsPreparation}}</p>
-      <p>Temps de cuisson : {{recette.tempsCuisson}}</p>
+      <p>Nombre de parts : {{recette.quantite}} {{recette.label | lowercase}}</p>
+      <p>Temps de préparation : {{recette.tempsPreparation}}min</p>
+      <p>Temps de cuisson : {{recette.tempsCuisson}}min</p>
       <p>Classement : {{recette.classement}}</p>
     </div>
     <div class="col">
@@ -32,5 +33,7 @@
       <li *ngFor="let ast of recette.astuces">{{ast.astuce}}</li>
     </ul>
   </div>
+
+  <button class="nav-link" routerLink="/mes-recettes">Retour</button>
 
 </div>

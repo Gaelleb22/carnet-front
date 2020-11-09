@@ -1,3 +1,4 @@
+import { NouvelleComponent } from './mes-recettes/nouvelle/nouvelle.component';
 import { DetailComponent } from './mes-recettes/detail/detail.component';
 import { ConseilsComponent } from './conseils/conseils.component';
 import { RecettesPartageesComponent } from './recettes-partagees/recettes-partagees.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   // Accessible si utilisateur connecté
   {path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService] },
   {path: 'mes-recettes', component: MesRecettesComponent, canActivate: [StatutConnecteService] },
-  {path: 'mes-recettes/:uuid', component: DetailComponent, canActivate: [StatutConnecteService] },
+  {path: 'mes-recettes/detail/:uuid', component: DetailComponent, canActivate: [StatutConnecteService] },
+  {path: 'mes-recettes/new', component: NouvelleComponent, canActivate: [StatutConnecteService]},
   {path: 'recettes-partagees', component: RecettesPartageesComponent, canActivate: [StatutConnecteService] },
   {path: 'conseils', component: ConseilsComponent, canActivate: [StatutConnecteService] },
   { path: '', redirectTo: '/connexion', pathMatch: 'full' }

@@ -9,11 +9,7 @@ export class Recette {
   uuid: string;
   nom: string;
   tempsPreparation: number;
-  cuisson: boolean;
   tempsCuisson: number;
-  typeCuisson: string;
-  repos: boolean;
-  tempsRepos: number;
   classement: number;
   statut: string;
   user: Utilisateur;
@@ -21,4 +17,11 @@ export class Recette {
   etapes: Etape[];
   astuces: Astuces[];
   urlPhoto: string;
+  quantite: number;
+  label: string;
+
+  /**typeCuisson: string;
+  repos: boolean;
+  tempsRepos: number;
+  cuisson: boolean;*/
 }

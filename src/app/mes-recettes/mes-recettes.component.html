@@ -1,15 +1,19 @@
 <h1>Mes recettes</h1>
 
 <div class="row">
+  <div class="col">
+    <button routerLink="/mes-recettes/new">Créer une nouvelle Recette</button>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-12 col-sm-6 col-md-4" *ngFor="let recette of recettes">
     <div class="card">
       <img src="{{recette.urlPhoto}}" class="card-img-top" alt="...">
       <div class="card-body">
-        <a routerLink="/mes-recettes/{{recette.uuid}}">
+        <a routerLink="/mes-recettes/detail/{{recette.uuid}}">
           <h3>{{recette.nom}}</h3>
         </a>
-        <!--
-        <button routerLink="/mes-recettes/{{recette.uuid}}">Afficher le détail</button>-->
       </div>
     </div>
   </div>

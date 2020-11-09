@@ -10,12 +10,13 @@ import { RecettesPartageesComponent } from './recettes-partagees/recettes-partag
 import { ConseilsComponent } from './conseils/conseils.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './authentification/auth-interceptor.service';
 import { DatePipe } from '@angular/common';
 import { DetailComponent } from './mes-recettes/detail/detail.component';
 import { FooterComponent } from './footer/footer.component';
+import { NouvelleComponent } from './mes-recettes/nouvelle/nouvelle.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { FooterComponent } from './footer/footer.component';
     ConseilsComponent,
     AuthentificationComponent,
     DetailComponent,
-    FooterComponent
+    FooterComponent,
+    NouvelleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule
   ],
