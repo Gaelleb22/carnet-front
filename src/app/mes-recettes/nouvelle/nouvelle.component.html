@@ -1,6 +1,6 @@
 <h1>Créer une nouvelle recette</h1>
 
-<form [formGroup]="myForm" novalidate (ngSubmit)="submit()" #form="ngForm">
+<form [formGroup]="myForm" novalidate #form="ngForm">
 
   <div class="form-group">
     <label>Nom</label>
@@ -16,22 +16,34 @@
     <div class="form-group row">
         <label class="col-sm-2">Nombre de parts</label>
         <input formControlName="quantite" type="number" class="col-sm-2" placeholder="0">
+        <small *ngIf="!myForm.controls.quantite.valid" class="text-danger">
+          Veuillez entrer une valeur supérieur ou égale à 0.
+        </small>
         <select class="col-sm-2" formControlName="label">
-          <option>Personne(s)</option>
-          <option>Pot(s)</option>
-          <option>Gâteau(x)</option>
+          <option [ngValue]="'PERSONNES'">Personne(s)</option>
+          <option [ngValue]="'POTS'">Pot(s)</option>
+          <option [ngValue]="'GÂTEAUX'">Gâteau(x)</option>
         </select>
+        <small *ngIf="!myForm.controls.quantite.valid || !myForm.controls.label.valid" class="text-danger">
+          Les 2 champs doivent être rempli.
+        </small>
     </div>
 
   <div class="form-group">
     <label>Temps de préparation</label>
-    <input type="number" formControlName="tempsPreparation" placeholder="45">
-    <small class="form-text text-muted">Le temps est affiché en minutes.</small>
+    <input type="number" formControlName="preparation" placeholder="45">
+    <small class="form-text text-muted">Temps en minutes.</small>
+    <small *ngIf="!myForm.controls.preparation.valid" class="text-danger">
+      Veuillez entrer une valeur supérieur ou égale à 0.
+    </small>
   </div>
   <div class="form-group">
     <label>Temps de cuisson</label>
-    <input type="number" formControlName="tempsCuisson" placeholder="45">
-    <small class="form-text text-muted">Le temps est affiché en minutes.</small>
+    <input type="number" formControlName="cuisson" placeholder="45">
+    <small class="form-text text-muted">Temps en minutes.</small>
+    <small *ngIf="!myForm.controls.cuisson.valid" class="text-danger">
+      Veuillez entrer une valeur supérieur ou égale à 0.
+    </small>
   </div>
   <div class="form-group">
     <label>Classement</label>
@@ -56,6 +68,9 @@
         <input formControlName="classement" class="form-check-input" type="radio" id="classement5" value="5">
         <label class="form-check-label" for="classement5">J'en veux tous les jours</label>
       </div>
+      <small *ngIf="!myForm.controls.classement.valid" class="text-danger">
+        Veuillez sélectionner une des valeurs précédentes.
+      </small>
     </div>
   </div>
     <div class="form-group">
@@ -69,6 +84,9 @@
           <input formControlName="statut" class="form-check-input" type="radio" id="statut2" value="PARTAGE">
           <label class="form-check-label" for="statut2">Partagée</label>
         </div>
+        <small *ngIf="!myForm.controls.statut.valid" class="text-danger">
+          Veuillez sélectionner une des valeurs précédentes.
+        </small>
       </div>
   </div>
 </fieldset>
@@ -82,12 +100,14 @@
           <div class="row">
             <input type="text" formControlName="quantite" placeholder="250g">
             <input type="text" formControlName="nom" placeholder="chocolat">
-            <button (click)="removeIngredient(i)">Supprimer</button>
+            <div *ngIf="ingredients.length > 1"><button (click)="removeIngredient(i)">Supprimer</button></div>
           </div>
+          <small *ngIf="!ingredient.valid" class="text-danger">
+            Les 2 champs doivent être rempli.
+          </small>
         </ng-container>
 
       </div>
-
       <button (click)="addIngredient()">Ajouter un ingrédient</button>
     </ng-container>
   </fieldset>
@@ -97,29 +117,47 @@
 
   <fieldset>
     <legend>Étapes de préparation</legend>
-    <div formArrayName="etapes">
+    <ng-container formArrayName="etapes">
 
       <div *ngFor="let etape of etapes.controls; let i=index">
-          <span>Etape {{i + 1}}</span>
-          <textarea rows="4" cols="50" [formControlName]="i">
-          </textarea><button (click)="removeEtape(i)">Supprimer</button>
+        <ng-container [formGroupName]="i">
+          <div class="row">
+            <span>Etape {{i + 1}}</span>
+            <textarea rows="4" cols="50" formControlName="texte" #texte placeholder="Écrivez votre texte ici !">
+            </textarea>
+            <small class="form-text text-muted">{{texte.value.length}} charactères</small>
+            <div *ngIf="etapes.length > 1"><button (click)="removeEtape(i)">Supprimer</button></div>
+          </div>
+          <small *ngIf="!etape.valid" class="text-danger">
+            Le texte doit comprendre entre 2 et 250 caractères.
+          </small>
+        </ng-container>
       </div>
       <button (click)="addEtape()">Ajouter une étape</button>
-    </div>
+    </ng-container>
 
   </fieldset>
 
   <fieldset>
     <legend>Astuces</legend>
-    <div formArrayName="astuces">
+    <ng-container formArrayName="astuces">
       <div *ngFor="let astuce of astuces.controls; let i=index">
-        <span>Astuce {{i + 1}}</span>
-        <textarea rows="4" cols="50" [formControlName]="i">
-        </textarea><button (click)="removeAstuce(i)">Supprimer</button>
+        <ng-container [formGroupName]="i">
+          <div class="row">
+            <span>Astuce {{i + 1}}</span>
+            <textarea rows="4" cols="50" formControlName="astuce" #texte placeholder="Écrivez votre astuce ici !">
+            </textarea>
+            <small class="form-text text-muted">{{texte.value.length}} charactères</small>
+            <div><button (click)="removeAstuce(i)">Supprimer</button></div>
+          </div>
+          <small *ngIf="!astuce.valid" class="text-danger">
+            Le texte doit comprendre entre 2 et 250 caractères.
+          </small>
+        </ng-container>
       </div>
       <button (click)="addAstuce()">Ajouter une astuce</button>
-    </div>
+    </ng-container>
   </fieldset>
 
-  <button type="submit" [disabled]="!myForm.valid">Enregistrer</button>
+  <button type="submit" [disabled]="!myForm.valid" (click)="submit()" routerLink="/mes-recettes">Enregistrer</button>
 </form>

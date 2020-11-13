@@ -1,3 +1,5 @@
+import { RecetteDto } from './../../entity/recetteDto.domain';
+import { MesRecettesService } from './../../service/mes-recettes.service';
 import { Ingredient } from './../../entity/ingredient.domain';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,58 +14,45 @@ export class NouvelleComponent implements OnInit {
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private service: MesRecettesService) {}
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
-      quantite: [''],
-      label: [''],
-      tempsPreparation: [''],
-      tempsCuisson: [''],
-      classement: [''],
-      statut: [''],
+      quantite: ['', [Validators.required, Validators.min(0)]],
+      label: ['', [Validators.required]],
+      preparation: ['', [Validators.required, Validators.min(0)]],
+      cuisson: ['', [Validators.required, Validators.min(0)]],
+      classement: ['', [Validators.required]],
+      statut: ['', [Validators.required]],
       ingredients: this.fb.array([
         this.fb.group({
-          nom:  [''],
-          quantite:  ['']
+          nom:  ['', [Validators.required]],
+          quantite:  ['', [Validators.required]]
         })
       ]),
       etapes: this.fb.array([
-        this.fb.control('')
+        this.fb.group({
+          texte: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(250)]]
+        })
       ]),
-      astuces: this.fb.array([
-        this.fb.control(null)
-      ])
+      astuces: this.fb.array([])
     });
   }
 
   // méthodes pour form ingrédients
-  initIngredient() {
-
-    const group: FormGroup = this.fb.group({
-      nom:  [''],
-      quantite:  ['']
-    });
-
-    this.ingredients.push(group);
-
-    /*return this.fb.group({
-
-    });*/
-  }
   get ingredients() {
     return this.myForm.get('ingredients') as FormArray;
   }
 
-  addIngredient() {
+  addIngredient(): void {
     this.ingredients.push(this.fb.group({
-      nom:  [''],
-      quantite:  ['']
+      nom:  ['', [Validators.required]],
+      quantite:  ['', [Validators.required]]
     }));
   }
 
-  removeIngredient(i: number) {
+  removeIngredient(i: number): void {
     this.ingredients.removeAt(i);
   }
 
@@ -72,10 +61,12 @@ export class NouvelleComponent implements OnInit {
     return this.myForm.get('etapes') as FormArray;
   }
 
-  addEtape() {
-    this.etapes.push(this.fb.control(''));
+  addEtape(): void {
+    this.etapes.push(this.fb.group({
+      texte: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(250)]]
+    }));
   }
-  removeEtape(i: number) {
+  removeEtape(i: number): void {
     this.etapes.removeAt(i);
   }
 
@@ -83,18 +74,21 @@ export class NouvelleComponent implements OnInit {
   get astuces() {
     return this.myForm.get('astuces') as FormArray;
   }
-  addAstuce() {
-    this.astuces.push(this.fb.control(''));
+  addAstuce(): void {
+    this.astuces.push(this.fb.group({
+      astuce: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(250)]]
+    }));
   }
-  removeAstuce(i: number) {
+  removeAstuce(i: number): void {
     this.astuces.removeAt(i);
   }
 
   submit(): void{
-    let recette = new Recette();
+    let recette = new RecetteDto();
     recette = this.myForm.value;
-
+    recette.url = './assets/card-defaut.JPG';
     console.log(recette);
+    this.service.createNewRecette(recette);
   }
 
 }
